@@ -2,8 +2,6 @@ on:
     push:
         branches:
             - master
-        paths:
-          - 'GoogleCloudFunctions/*'
 
 jobs:
     build:
@@ -15,11 +13,13 @@ jobs:
               sudo apt-get update && sudo apt-get install google-cloud-sdk
           - name: Activate Service Account 
             env: 
-              GCLOUD_AUTH: ${{ secrets.GCLOUD_AUTH }}
+              GCLOUD_KEY: ${{ secrets.GCLOUD_KEY }}
             run: |
-              echo "$GCLOUD_AUTH" | base64 --decode > "$HOME"/gcloud.json
+              echo "$GCLOUD_KEY" | base64 --decode > "$HOME"/gcloud.json
               sh -c "gcloud auth activate-service-account --key-file=$HOME/gcloud.json $*"
-          - name: deploy function 
+          - name: Deploy Google Cloud Funtions 
             run: |
-              gcloud functions deploy getQuotesByDate --runtime nodejs8 --project demoneil --service-account github-actions@demoneil.iam.gserviceaccount.com --source functions/getQuotesByDate
+              gcloud functions deploy atdCpuBound --runtime nodejs8 --project advanced-technology-days --service-account advanced-technology-days@appspot.gserviceaccount.com --source ./GoogleCloudFunctions --allow-unauthenticated --trigger-http --region=europe-west1 --memory=256
+              gcloud functions deploy atdMemoryBound --runtime nodejs8 --project advanced-technology-days --service-account advanced-technology-days@appspot.gserviceaccount.com --source ./GoogleCloudFunctions --allow-unauthenticated --trigger-http --region=europe-west1 --memory=1024
+              
 
