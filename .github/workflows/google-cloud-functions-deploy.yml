@@ -1,3 +1,5 @@
+name: Google Cloud Functions Deploy
+
 on:
     push:
         branches:
