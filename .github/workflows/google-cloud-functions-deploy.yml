@@ -7,19 +7,17 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-          - uses: actions/checkout@v1
-          - name: Install Google Cloud SDK
-            run: |
-              sudo apt-get update && sudo apt-get install google-cloud-sdk
-          - name: Activate Service Account 
-            env: 
-              GCLOUD_KEY: ${{ secrets.GCLOUD_KEY }}
-            run: |
-              echo "$GCLOUD_KEY" | base64 --decode > "$HOME"/gcloud.json
-              sh -c "gcloud auth activate-service-account --key-file=$HOME/gcloud.json $*"
-          - name: Deploy Google Cloud Funtions 
-            run: |
-              gcloud functions deploy atdCpuBound --runtime nodejs8 --project advanced-technology-days --service-account advanced-technology-days@appspot.gserviceaccount.com --source ./GoogleCloudFunctions --allow-unauthenticated --trigger-http --region=europe-west1 --memory=256
-              gcloud functions deploy atdMemoryBound --runtime nodejs8 --project advanced-technology-days --service-account advanced-technology-days@appspot.gserviceaccount.com --source ./GoogleCloudFunctions --allow-unauthenticated --trigger-http --region=europe-west1 --memory=1024
-              
-
+            - uses: actions/checkout@v1
+            - name: Install Google Cloud SDK
+              run: |
+                  sudo apt-get update && sudo apt-get install google-cloud-sdk
+            - name: Activate Service Account
+              env:
+                  GCLOUD_KEY: ${{ secrets.GCLOUD_KEY }}
+              run: |
+                  echo "$GCLOUD_KEY" > "$HOME"/gcloud.json
+                  sh -c "gcloud auth activate-service-account --key-file=$HOME/gcloud.json $*"
+            - name: Deploy Google Cloud Funtions
+              run: |
+                  gcloud functions deploy atdCpuBound --runtime nodejs8 --project advanced-technology-days --service-account advanced-technology-days@appspot.gserviceaccount.com --source ./GoogleCloudFunctions --allow-unauthenticated --trigger-http --region=europe-west1 --memory=256
+                  gcloud functions deploy atdMemoryBound --runtime nodejs8 --project advanced-technology-days --service-account advanced-technology-days@appspot.gserviceaccount.com --source ./GoogleCloudFunctions --allow-unauthenticated --trigger-http --region=europe-west1 --memory=1024
