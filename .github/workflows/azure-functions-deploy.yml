@@ -13,6 +13,7 @@ jobs:
             - name: 'Login via Azure CLI'
               uses: Azure/actions/login@master
               with:
+                  # Get this in cloud shell $ az ad sp create-for-rbac --name "myApp" --role contributor --scopes /subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.Web/sites/<APP_NAME> --sdk-auth
                   creds: ${{ secrets.AZURE_KEY }}
             - name: Setup Node 10.x
               uses: actions/setup-node@v1

@@ -29,6 +29,7 @@
     },
     "homepage": "https://github.com/ivucicev/advanced-technology-days#readme",
     "dependencies": {
+        "aws-xray-sdk": "^2.5.0",
         "crypto": "^1.0.1"
     }
 }
