@@ -12,6 +12,8 @@ jobs:
             - uses: actions/checkout@v1
             - name: Install AWS Cli SDK
               run: |
+                  sudo apt-get install python3-setuptools
+              run: |
                   pip3 install awscli --upgrade --user
             - name: Configure AWS Account
               env:
@@ -30,7 +32,7 @@ jobs:
                   pushd ..
                   pushd atdMemoryBound
                   zip funtion.zip index.js
-             - name: Deploy & Update lambda functions
-               run: |
+            - name: Deploy & Update lambda functions
+              run: |
                   aws lambda update-function-code --function-name atdCpuBound --zip-file fileb://AWSLambda/atdCpuBound/function.zip
                   aws lambda update-function-code --function-name atdMemoryBound --zip-file fileb://AWSLambda/atdMemoryBound/function.zip
