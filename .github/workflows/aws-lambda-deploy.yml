@@ -10,9 +10,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v1
-            - name: Install AWS Cli SDK
+            - name: Install python3-tools
               run: |
                   sudo apt-get install python3-setuptools
+            - name: Install AWS Cli SDK
               run: |
                   pip3 install awscli --upgrade --user
             - name: Configure AWS Account
