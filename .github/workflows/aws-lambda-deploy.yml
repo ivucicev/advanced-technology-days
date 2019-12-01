@@ -32,7 +32,7 @@ jobs:
                   zip -r function.zip .
                   pushd ..
                   pushd atdMemoryBound
-                  zip funtion.zip index.js
+                  zip function.zip index.js
             - name: Deploy & Update lambda functions
               run: |
                   aws lambda update-function-code --function-name atdCpuBoun --zip-file fileb://AWSLambda/atdCpuBound/function.zip
