@@ -35,5 +35,5 @@ jobs:
                   zip funtion.zip index.js
             - name: Deploy & Update lambda functions
               run: |
-                  aws lambda update-function-code --function-name atdCpuBound --zip-file fileb://AWSLambda/atdCpuBound/function.zip
+                  aws lambda update-function-code --function-name atdCpuBoun --zip-file fileb://AWSLambda/atdCpuBound/function.zip
                   aws lambda update-function-code --function-name atdMemoryBound --zip-file fileb://AWSLambda/atdMemoryBound/function.zip
