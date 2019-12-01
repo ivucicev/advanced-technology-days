@@ -34,7 +34,7 @@ exports.atdMemoryBound = (req, res) => {
         console.log(len);
     }, 1000).unref();
     if (Math.floor(Math.random() * 100) + 1 < 7) {
-        throw new Error('Something went wrong!');
+        throw new Error('Something went wrong! ');
     }
     res.send('ATD - memory bound - Allocated 100MB');
     console.log('Memory bound method - end');
