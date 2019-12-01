@@ -11,5 +11,8 @@ exports.handler = async function(event, context) {
         body: JSON.stringify('A hashed date for you! ' + hmac.read())
     };
     console.log('CPU-Bound Method - end');
+    if (Math.floor(Math.random() * 100) + 1 < 7) {
+        throw new Error('Something went wrong!');
+    }
     return response;
 };

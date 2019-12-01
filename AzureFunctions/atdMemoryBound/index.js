@@ -8,5 +8,8 @@ module.exports = async function(context, req) {
     context.res = {
         body: 'ATD - memory bound - Allocated 100MB'
     };
+    if (Math.floor(Math.random() * 100) + 1 < 7) {
+        throw new Error('Something went wrong!');
+    }
     context.log('Memory bound method - end');
 };
