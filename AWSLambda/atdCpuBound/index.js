@@ -1,5 +1,7 @@
 const crypto = require('crypto');
 
+const atd = 'ATD';
+
 exports.handler = async function(event, context) {
     console.log('CPU-Bound Method - start');
     const key = Math.random() < 0.5 ? 'advanced-technology-days' : 'serverless';
@@ -16,3 +18,7 @@ exports.handler = async function(event, context) {
     }
     return response;
 };
+
+// hndlr - function to be executed
+// event -data sendt during labda function invocation
+// context-object - methodsa available to interact with runtime information
